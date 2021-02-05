@@ -4,8 +4,9 @@ class Api::V1::MenusController < ApplicationController
   # GET /menus
   def index
     @menus = Menu.all
-
-    render json: @menus
+    menus_json = MenuSerializer.new(@menus).serializable_hash.to_json
+    
+    render json: menus_json
   end
 
   # GET /menus/1
